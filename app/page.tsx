@@ -1,9 +1,34 @@
+"use client";
+import {useState} from "react";
+import StatCard from "../components/StatCard";
 export default function Home() {
-  return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-5xl font-bold">
-        MentorOS 🚀
-      </h1>
-    </main>
-  );
+    const [studentsCount, setStudentsCount] = useState(24);
+    function handleAddStudent() {
+        setStudentsCount(studentsCount + 1);
+    }
+    function handleRemoveStudent() {
+        setStudentsCount(studentsCount - 1);
+    }   
+    return (
+        <div>
+        <div className="flex gap-4 justify-between">
+            <StatCard
+            title="Total Students"
+            value={studentsCount}
+            />
+            <StatCard
+            title="Teachers"
+            value={12}
+            />
+            </div>
+            <div> 
+            <button onClick={handleAddStudent}>
+  Add Student
+</button>
+<button onClick={handleRemoveStudent}>
+    Remove Student
+</button>
+          </div>
+          </div>
+    )
 }
