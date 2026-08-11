@@ -1,24 +1,6 @@
+import Link from "next/link"
+import { students } from "../../data/students"
 export default function Students () {
-    const students=[
-    {
-       id:1,
-        name: "Mohadese",
-        email:"Mohadese@example.com",
-        status:"Active"
-    },
-    {
-        id:2,
-        name:"Sam",
-        email:"samsamaii@gmail.com",
-        status:"Inactive"
-    },
-    {
-        id:3,
-        name:"sara",
-        email:"Sara@gmail.com",
-        status:"Active"
-    },
-    ];
     return (
         <div className="flex flex-col gap-4">
         <h1>Students Page</h1>
@@ -35,6 +17,9 @@ export default function Students () {
               >
                 {student.status}
                 </p>
+                <Link href={`/students/${student.id}`}>
+                View Profile 
+                </Link>
                 </div>
         ))}
         </div>

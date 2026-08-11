@@ -1,15 +1,7 @@
+import { students } from "../../../data/students"
 type StudentProfileProps={
     params: Promise<{id:string}>
 }
-const students=[
-    {id:1, name:"Mohadese"},
-    {id:2, name:"Sam"},
-    {id:3, 
-        name:"Sara",
-    email:"sara@gmail.com",
-status:"Active"
-}
-]
 export default async function StudentProfile({params} : StudentProfileProps) {
     const {id} = await params
     const student= students.find((student) =>
