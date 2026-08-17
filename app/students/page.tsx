@@ -8,6 +8,7 @@ export default function Students () {
   const[name,setName]=useState("")
   const[email,setEmail]=useState("")
   const [ status,setStatus]=useState("Active")
+  const[formError, setFormError]= useState("")
   async function loadStudents() {
     try{
     const response= await fetch("/api/students")
@@ -32,6 +33,12 @@ export default function Students () {
     return <p>{error}</p>
   }
   async function handleAddStudent() {
+    if (!name||!email) {
+      setFormError("Name and email are required")
+      return
+    }
+    setFormError("")
+    try{
     const response = await fetch("/api/students", {
       method: "POST",
       headers: {
@@ -43,16 +50,25 @@ export default function Students () {
         status,
       }),
     })
-  if (response.ok) {
+    const result=await response.json()
+  if (!response.ok) {
+    setFormError(result.message)
+      return
+  }
     await loadStudents()
     setName("")
     setEmail("")
     setStatus("Active")
-  }
-  }
+} catch {
+  setFormError("Something went wrong")
+}
+    }
     return (
         <div className="flex flex-col gap-4">
         <h1>Students Page</h1>
+        {formError&&(
+          <p>{formError}</p>
+        )}
         <input
         value={name}
         onChange={(event)=> setName(event.target.value)}
