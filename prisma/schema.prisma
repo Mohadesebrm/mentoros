@@ -16,6 +16,7 @@ model Student{
   name String
   email String @unique
   status StudentStatus @default (ACTIVE)
+  ownerId String
 }
 enum StudentStatus{
   ACTIVE
