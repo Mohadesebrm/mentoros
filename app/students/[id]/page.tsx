@@ -1,7 +1,7 @@
 import { prisma } from "../../../lib/prisma"
 import { notFound } from "next/navigation"
 import { createClient } from "../../../utils/supabase/server"
-
+import StudentAIAnalysis from "../../../components/StudentAIAnalysis"
 type StudentProfileProps = {
   params: Promise<{ id: string }>
 }
@@ -31,13 +31,13 @@ export default async function StudentProfile({
   if (!student) {
     notFound()
   }
-
   return (
     <div>
       <h1>Student Profile</h1>
       <p>{student.name}</p>
       <p>{student.email}</p>
       <p>{student.status}</p>
-    </div>
+      <StudentAIAnalysis studentId={student.id} />
+                </div>
   )
 }

@@ -2,7 +2,7 @@ import { openai } from "../../../../lib/openai"
 
 export async function GET() {
   const response = await openai.responses.create({
-    model: "gpt-5.6-luna",
+    model: "gpt-5",
 
     instructions:
       "You are an assistant for mentors. Analyze the student's situation and recommend one immediate next action.",
